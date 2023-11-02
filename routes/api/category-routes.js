@@ -32,6 +32,7 @@ router.get("/:id", async (req, res) => {
     });
     if (!categoryById) {
       res.status(404).json({ message: "No category found with that id!" });
+      return;
     }
     res.status(200).json(categoryById);
   } catch (err) {
@@ -52,7 +53,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   // update a category by its `id` value
   // taking in an id as a parameter and also receiving a req.body
   // sequalize update
@@ -62,17 +63,35 @@ router.put("/:id", (req, res) => {
         id: req.params.id,
       },
     });
+    if (!updateCategory) {
+      res.status(404).json({ message: "No category with that id!" });
+      return;
+    }
     res.status(200).json({ message: "Updated Successfully!" });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   // delete a category by its `id` value
   // DESTROY
   // destroying based off the req.params.id
   // res.json to let the server know its gone
+  try {
+    const deleteCategory = await Category.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!deleteCategory) {
+      res.status(404).json({ message: "No category with that id!" });
+      return;
+    }
+    res.status(200).json({ message: "Category successfully deleted!" });
+  } catch (err) {
+    res.status(500).json({ message: "Internal Server Error!" });
+  }
 });
 
 module.exports = router;
