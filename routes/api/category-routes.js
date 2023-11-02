@@ -39,17 +39,33 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   // create a new category
   //get the body and get the contents and insert into sequalize
   // catergory.create
   // whatever we created can return it back off the res.json
+  try {
+    const addCategory = await Category.create(req.body);
+    res.status(200).json(addCategory);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.put("/:id", (req, res) => {
   // update a category by its `id` value
   // taking in an id as a parameter and also receiving a req.body
   // sequalize update
+  try {
+    const updateCategory = Category.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json({ message: "Updated Successfully!" });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.delete("/:id", (req, res) => {
