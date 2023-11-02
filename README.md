@@ -14,19 +14,27 @@
 
 ## Description
 
-For video demonstration click [HERE](#)
+This is the back end of what would be an e-commerce platform. This project consists of many files that work together to function as an API with endpoints for displaying requested information. By using environmental variables, no credentials were hard-coded for configuring and connecting to a local MySQL database. Seed data was also created to populate the database with information, allowing API endpoints to be tested using [Insomnia](https://docs.insomnia.rest/insomnia/get-started). The modeling of tables was done with Sequelize to seamlessly create tables within the execution of our back-end environment, and many-to-many relationships were also established. With everything in place, the Categories, Products, and Tags tables all have GET, POST, PUT, and DELETE (CRUD) endpoints that can be used to modify specific tables.
 
 ## Table of Contents
 
-- [Usage](#usage)
 - [Installation](#installation)
+- [Usage](#usage)
 - [License](#license)
 - [Questions](#questions)
 - [Author Info](#author-info)
 
+## Installation
+
+Assuming the user has Node.js and MySQL installed and configured, the user will run 'npm i' to install dependencies. Once dependencies are installed the user will create a .env file and insert proper database credentials inside file. The user should make sure these credentials are properly referenced in the connection.js file. This will ensure the database will be connected properly to the back-end. **IMPORTANT: If code is going into a public repository, add .env to .gitignore file so credentials are not pushed to the repository.** The back-end is now ready for use.
+
 ## Usage
 
-## Installation
+Videos below will demonstrate how to properly create and seed your local database and start up the back-end. These videos will also demonstrate the use of Insomnia to test the API endpoints.
+
+For video demonstration of how to initialize database in MySQL Shell click [HERE](https://drive.google.com/file/d/1aDgnOKw2O4kYLFE8hENoSS1Dl_frksJL/view?usp=sharing)
+
+For video demonstration of Insomnia API endpoints click [HERE](https://drive.google.com/file/d/1tCvTWIjsimEDtK72vrc6LTo2n0AuTlkY/view?usp=sharing)
 
 ## License
 
